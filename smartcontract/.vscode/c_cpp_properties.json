@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "includePath": [
+                "/usr/local/Cellar/eosio.cdt/1.6.2/opt/eosio.cdt/include/**",
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/include"
+            ],
+            "libs": [],
+            "codeOptions": [],
+            "testOptions": [],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "browse": {
+                "path": [
+                    "/usr/local/Cellar/eosio.cdt/1.6.2/opt/eosio.cdt/include/**",
+                    "${workspaceFolder}/**",
+                    "${workspaceFolder}/include"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 4
+}
