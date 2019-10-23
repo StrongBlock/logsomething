@@ -8,6 +8,7 @@ add_custom_target( wast ALL COMMAND python3 -m eosfactory.build \"${CMAKE_SOURCE
 
 add_test( NAME unittest1 COMMAND python3 ${CMAKE_SOURCE_DIR}/tests/unittest1.py )
 add_test( NAME unittest2 COMMAND python3 ${CMAKE_SOURCE_DIR}/tests/unittest2.py )
+add_test( NAME unittest3 COMMAND python3 ${CMAKE_SOURCE_DIR}/tests/unittest3.py )
 
 # ctest -V -R ^unittest$
 # ctest -V -R ^tests$

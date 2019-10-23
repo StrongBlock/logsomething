@@ -32,6 +32,20 @@
             ]
         },
         {
+            "name": "dependency",
+            "base": "",
+            "fields": [
+                {
+                    "name": "expected",
+                    "type": "name[]"
+                },
+                {
+                    "name": "actual",
+                    "type": "name[]"
+                }
+            ]
+        },
+        {
             "name": "log",
             "base": "",
             "fields": [
@@ -52,6 +66,16 @@
                     "type": "time_point_sec"
                 }
             ]
+        },
+        {
+            "name": "setdep",
+            "base": "",
+            "fields": [
+                {
+                    "name": "smart_contract_dependency_actual_names",
+                    "type": "name[]"
+                }
+            ]
         }
     ],
     "actions": [
@@ -64,9 +88,21 @@
             "name": "deletelog",
             "type": "deletelog",
             "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Delete Log\nsummary: 'Delete Log'\nicon: @ICON_BASE_URL@/@SMART_CONTRACT_ACTION_ICON_URI@\n---\n\nThis action's purpose is for {{who}} to delete a log. The log being deleted is log #{{log_id}}."
+        },
+        {
+            "name": "setdep",
+            "type": "setdep",
+            "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Set Dependencies\nsummary: 'Set Dependencies'\nicon: @ICON_BASE_URL@/@SMART_CONTRACT_ACTION_ICON_URI@\n---\n\nThis action's purpose is for {{$action.account}} to set the account names, {{smart_contract_dependency_actual_names}}, of the smart contract's dependencies."
         }
     ],
     "tables": [
+        {
+            "name": "dependency",
+            "type": "dependency",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
         {
             "name": "log",
             "type": "log",

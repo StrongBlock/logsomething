@@ -111,6 +111,32 @@
             "problemMatcher": []
         },
         {
+            "label": "Unittest3",
+            "type": "shell",
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "bash.exe",
+                        "args": [
+                            "-c"
+                        ]
+                    }
+                },
+                "command": "python3 ./tests/unittest3.py"
+            },
+            "osx": {
+                "command": "python3 ./tests/unittest3.py"
+            },
+            "linux": {
+                "command": "python3 ./tests/unittest3.py"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated"
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "EOSIO API",
             "type": "shell",
             "windows": {
