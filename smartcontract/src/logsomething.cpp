@@ -17,7 +17,7 @@ void logsomething::createlog(name who, string what)
 {
    require_auth(who);
    check(dependencies.exists(), "need to call setdep");
-   string err_msg = "Looks like you need to sign " + get_self().to_string() + "'s EULA before you can continue. Go back to your dashboard, click DApps. Click the View DApp button on the EULA card. While in the EULA DApp, look for " + get_self().to_string() + " in the Current EULAs table to view and sign " + get_self().to_string() + "'s EULA.";
+   string err_msg = "To continue, go back to your dashboard, click DApps and then click the View DApp button on the EULA card. While in the EULA DApp, look for " + get_self().to_string() + " in the Current EULAs table to view and sign " + get_self().to_string() + "'s EULA.";
    check(can_proceed(get_self(), who, get_dependency_name(0) /* eulaeulaeula*/), err_msg.c_str());
    logs.emplace(get_self(), [&](auto &row) {
       row.id = get_next_id();
@@ -31,7 +31,7 @@ void logsomething::deletelog(uint64_t log_id, name who)
 {
    require_auth(who);
    check(dependencies.exists(), "need to call setdep");
-   string err_msg = "Looks like you need to sign " + get_self().to_string() + "'s EULA before you can continue. Go back to your dashboard, click DApps. Click the View DApp button on the EULA card. While in the EULA DApp, look for " + get_self().to_string() + " in the Current EULAs table to view and sign " + get_self().to_string() + "'s EULA.";
+   string err_msg = "To continue, go back to your dashboard, click DApps and then click the View DApp button on the EULA card. While in the EULA DApp, look for " + get_self().to_string() + " in the Current EULAs table to view and sign " + get_self().to_string() + "'s EULA.";
    check(can_proceed(get_self(), who, get_dependency_name(0) /* eulaeulaeula*/), err_msg.c_str());
    auto log_itr = logs.find(log_id);
    check(log_itr != logs.end(), "log does not exist");

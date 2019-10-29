@@ -1,3 +1,4 @@
 {
-    "smart_contract_account_name": "logsomething"
+    "smart_contract_account_name": "logsomething",
+    "requires_eosio.code_permission": false
 }

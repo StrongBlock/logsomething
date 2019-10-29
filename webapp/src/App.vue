@@ -76,12 +76,12 @@
         >
           <template v-slot:cell(actions)="row">
             <a href="javascript:" @click="deleteRecord(row.item, row.index, $event.target)">
-              <font-awesome-icon icon="trash" v-if="row.item.who === account.name" />
+              <font-awesome-icon :icon="['far', 'trash-alt']" v-if="row.item.who === account.name" />
             </a>
           </template>
         </b-table>
         <div v-if="hasMoreRows" class="text-center">
-          <a href="javascript:" @click="read(true)">load more</a>
+          <a href="javascript:" @click="loadRecords(true)">load more</a>
         </div>
       </div>
       <div v-else-if="!tableRows.length && isConnected && !isLoadingTableRows" class="my-3">
@@ -176,10 +176,10 @@
         } catch (e) {
           switch (e.message) {
             case 'connection_declined':
-              this.error('Please launch Scatter Wallet first and make sure it is unlocked');
+              this.error('Could not connect to Scatter. Please launch Scatter Wallet first and make sure it is unlocked.');
               break;
             case 'has_no_account':
-              this.error('You do not have an account for this network. Please import your private key in Scatter first');
+              this.error('You do not have an account for this network. Please import your private key in Scatter first.');
               break;
             case 'failed_to_connect':
               this.error('Connection failed. Please double check your network connection params.');
@@ -260,10 +260,10 @@
       loadRecords: async function (loadMore = false) {
         this.isLoadingTableRows = true;
         try {
-          const lowerBound = loadMore
-            ? this.tableRows[this.tableRows.length - 1].id
+          const upperBound = loadMore
+            ? this.tableRows[this.tableRows.length - 1].id - 1
             : 0;
-          const res = await this.scatter.readTable('log', lowerBound);
+          const res = await this.scatter.readTable('log', upperBound);
           this.tableRows = [
             ...(loadMore ? this.tableRows : []),
             ...res.rows,
@@ -297,7 +297,7 @@
             ],
           };
 
-          const res = await this.scatter.transact(tx);
+          await this.scatter.transact(tx);
           this.loadRecords();
           this.message = null;
         } catch (e) {

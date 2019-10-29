@@ -32,7 +32,12 @@ export default class ScatterService {
         throw new Error('connection_declined');
       }
     } catch (e) {
-      throw new Error('failed_to_connect');
+      if (e.message === 'Failed to fetch') {
+        throw new Error('failed_to_connect');
+      }
+      else {
+        throw e;
+      }
     }
   }
 
@@ -100,17 +105,21 @@ export default class ScatterService {
     return await ScatterJS.hasAccountFor(this.network);
   }
 
-  async readTable(table, lowerBound = 0, limit = 10) {
-    const query = {
+  async readTable(table, upperBound = null, limit = 10) {
+    let query = {
       json: true,
       code: this.config.smartContractAccountName,
       scope: this.config.smartContractAccountName,
-      table: table,
-      lower_bound: lowerBound,
-      limit: limit,
       reverse: true,
       show_payer: false,
+      table,
+      limit,
     };
+
+    if (upperBound) {
+      query.upper_bound = upperBound;
+    }
+
     return await this.rpc.get_table_rows(query);
   }
 
