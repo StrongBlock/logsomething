@@ -19,6 +19,7 @@
     "core-js": "^2.6.9",
     "eosjs": "^20.0.0",
     "eosjs-ecc": "^4.0.7",
+    "serialize-javascript": "^2.1.2",
     "vue": "^2.6.10"
   },
   "devDependencies": {
